@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, AGraphicsActivity!</string>
+    <string name="app_name">AGraphics</string>
+	<string name="btn_start">Start</string>
+	<string name="btn_select_interpolator">Select Interpolator</string>
+
+	    <!-- PreferenceActivity -->
+	<string name="pre_key_demo_basic">AGraphics_Demo_key</string>
+	<string name="pre_title_demo_basic">AGraphics Demo</string>
+	<string name="pre_key_linear_animation">linear_animation_key</string>
+	<string name="pre_title_linear_animation">Linear Animation</string>
+</resources>
