@@ -20,12 +20,13 @@
 package xzy.android.agraphics.interpolater;
 
 import xzy.android.agraphics.interpolater.EaseType.Type;
+
 /**
  * @author zhengyang.xu
  * @version 0.1
  * @since Mar 2, 2012 1:11:55 PM
  */
-//带回弹的加速器
+// 带回弹的加速器
 public class AnticipateInterpolator implements AInterpolator {
 
     private Type mType;

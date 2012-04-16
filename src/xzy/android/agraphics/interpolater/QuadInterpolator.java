@@ -20,13 +20,14 @@
 package xzy.android.agraphics.interpolater;
 
 import xzy.android.agraphics.interpolater.EaseType.Type;
+
 /**
  * @author zhengyang.xu
  * @version 0.1
  * @date Mar 2, 2012 1:11:55 PM
  * @project AGraphics
  */
-//the same of AccelerateInterpolator
+// the same of AccelerateInterpolator
 public class QuadInterpolator implements AInterpolator {
 
     private Type mType;

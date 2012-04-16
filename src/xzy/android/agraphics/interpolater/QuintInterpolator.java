@@ -16,9 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 package xzy.android.agraphics.interpolater;
 
 import xzy.android.agraphics.interpolater.EaseType.Type;
+
 /**
  * @author zhengyang.xu
  * @version 0.1
@@ -27,42 +29,41 @@ import xzy.android.agraphics.interpolater.EaseType.Type;
  */
 public class QuintInterpolator implements AInterpolator {
 
-	private Type mType;
+    private Type mType;
 
-	public QuintInterpolator(Type type) {
-		this.mType = type;
-	}
+    public QuintInterpolator(Type type) {
+        this.mType = type;
+    }
 
-	public void setType(Type type) {
-	    this.mType = type;
-	}
+    public void setType(Type type) {
+        this.mType = type;
+    }
 
-	public float getInterpolation(float input) {
-		if (mType == Type.IN) {
-			return in(input);
-		} else
-		if (mType == Type.OUT) {
-			return out(input);
-		} else
-		if (mType == Type.INOUT) {
-			return inout(input);
-		}
-		return 0;
-	}
+    public float getInterpolation(float input) {
+        if (mType == Type.IN) {
+            return in(input);
+        } else if (mType == Type.OUT) {
+            return out(input);
+        } else if (mType == Type.INOUT) {
+            return inout(input);
+        }
+        return 0;
+    }
 
-	private float in(float input) {
-		return input*input*input*input*input;
-	}
-	private float out(float input) {
-		return ((input-=1)*input*input*input*input + 1);
-	}
+    private float in(float input) {
+        return input * input * input * input * input;
+    }
+
+    private float out(float input) {
+        return ((input -= 1) * input * input * input * input + 1);
+    }
 
     private float inout(float input) {
-		input *= 2;
-		if (input < 1) {
-			return 0.5f*input*input*input*input*input;
-		} else {
-			return 0.5f*((input-=2)*input*input*input*input + 2);
-		}
-	}
+        input *= 2;
+        if (input < 1) {
+            return 0.5f * input * input * input * input * input;
+        } else {
+            return 0.5f * ((input -= 2) * input * input * input * input + 2);
+        }
+    }
 }
