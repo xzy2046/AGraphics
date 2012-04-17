@@ -74,6 +74,8 @@ public class AAnimationView extends View implements AAnimator.AnimationUpdateLis
 
     private CPUUsage mCPUUsage;
 
+    private static boolean DEBUG = false;
+
     public AAnimationView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
@@ -104,7 +106,8 @@ public class AAnimationView extends View implements AAnimator.AnimationUpdateLis
 
     @Override
     public void draw(Canvas canvas) {
-        mCPUUsage.update();
+        if (DEBUG)
+            mCPUUsage.update();
         canvas.drawBitmap(mBitmap, mValuesHolderX.getValue(), mValuesHolderY.getValue(), null);
         if (mEaseInPath != null) {
             mPaint.setColor(Color.YELLOW);
