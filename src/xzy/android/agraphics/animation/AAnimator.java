@@ -62,6 +62,8 @@ public class AAnimator {
 
     private Interpolator mInterpolator;
 
+    private Object mTag;
+
     protected AnimationListener mAnimationListener;
 
     private AnimationUpdateListener mAnimationUpdateListener;
@@ -115,6 +117,14 @@ public class AAnimator {
 
     public REPEAT_MODE getRepeatMode() {
         return mRepeatMode;
+    }
+
+    public void setTag(Object o) {
+        mTag = o;
+    }
+
+    public Object getTag() {
+        return mTag;
     }
 
     public void setFillAfter(boolean fillAfter) {
@@ -311,7 +321,7 @@ public class AAnimator {
 	    void onAnimationCancel(AAnimator animator);
 	}
 
-	public static interface AnimationUpdateListener {  //use for view to invisible canvas
+	public static interface AnimationUpdateListener {  //use for view to invalidate canvas
 	    void AnimationUpdate(AAnimator animator);
 	}
 

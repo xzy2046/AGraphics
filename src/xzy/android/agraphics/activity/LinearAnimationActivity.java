@@ -17,8 +17,10 @@
  *
  */
 
-package xzy.android.agraphics;
+package xzy.android.agraphics.activity;
 
+import xzy.android.agraphics.AAnimationView;
+import xzy.android.agraphics.R;
 import xzy.android.agraphics.interpolater.AnticipateInterpolator;
 import xzy.android.agraphics.interpolater.BounceInterpolator;
 import xzy.android.agraphics.interpolater.CircInterpolator;
