@@ -70,6 +70,11 @@ public class AAnimator {
 
     private AnimationUpdateListener mAnimationUpdateListener;
 
+    /**
+     * the mode of repeat 
+     * 1.RESTART: 0 - 1
+     * 2.REVERSE: 1 - 0
+     */
     public static enum REPEAT_MODE {
         RESTART, REVERSE
     }
@@ -79,6 +84,10 @@ public class AAnimator {
         mFillAfter = false;
     }
 
+    /**
+     * set the duration of animation
+     * @param duration  
+     */
     public void setDuration(int duration) {
         if (duration < 0) {
             throw new IllegalArgumentException("Animation duration cannot be negative");
@@ -105,6 +114,10 @@ public class AAnimator {
         mFrameDelay = frameDelay;
     }
 
+    /**
+     * 
+     * @return duration
+     */
     public long getDuration() {
         return mDuration;
     }
@@ -113,7 +126,7 @@ public class AAnimator {
      * RESTART : 0
      * REVERSE : 1
      */
-    public void setRepeatMode(REPEAT_MODE repeatMode) {   //重复的方式（头 -> 尾） or（尾的-> 头)
+    public void setRepeatMode(REPEAT_MODE repeatMode) {   //重复的方式（头 -> 尾） or（尾 -> 头)
         mRepeatMode = repeatMode;
     }
 
