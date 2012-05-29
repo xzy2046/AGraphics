@@ -64,6 +64,8 @@ public class AAnimator {
 
     private Object mTag;
 
+    private boolean DEBUG = false;
+
     protected AnimationListener mAnimationListener;
 
     private AnimationUpdateListener mAnimationUpdateListener;
@@ -243,7 +245,8 @@ public class AAnimator {
 //            return;
         }
 
-        Log.i("xzy", "NormalizedTime is : " + getNormalizedTime());
+        if (DEBUG)
+            Log.i("xzy", "NormalizedTime is : " + getNormalizedTime());
         float normalizedTime = getNormalizedTime();
         if (normalizedTime < 0f) {
             normalizedTime = 0;
@@ -253,7 +256,8 @@ public class AAnimator {
             normalizedTime = 1;
         }
         float interpolation = mInterpolator.getInterpolation(normalizedTime);
-        Log.i("xzy", "interpolation is " + interpolation);
+        if (DEBUG)
+            Log.i("xzy", "interpolation is " + interpolation);
         float newValue = mStartValue + (mEndValue - mStartValue) * interpolation;
         mValuesHolder.setValue(newValue);
         mAnimationUpdateListener.AnimationUpdate(this);
