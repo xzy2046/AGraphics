@@ -12,5 +12,14 @@
                 android:targetClass="xzy.android.agraphics.activity.LinearAnimationActivity"
             />
 	  	</PreferenceScreen>
+	  	<PreferenceScreen
+	  	    android:key="@string/pre_key_bitmap_animation"
+	  	    android:title="@string/pre_title_bitmap_animation" >
+	  	    <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="xzy.android.agraphics"
+                android:targetClass="xzy.android.agraphics.activity.BitmapAnimationActivity"
+            />
+	  	</PreferenceScreen>
   	</PreferenceCategory>
 </PreferenceScreen>

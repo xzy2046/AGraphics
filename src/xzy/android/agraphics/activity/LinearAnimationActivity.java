@@ -75,18 +75,6 @@ public class LinearAnimationActivity extends Activity {
 
         mAnimationView = (AAnimationView) this.findViewById(R.id.animationView);
 
-//        mAnimator = new AAnimator();  //TODO Animator 可以放到View里面去
-//        mAnimator.setAnimationUpdateListener(new AAnimator.AnimationUpdateListener() {
-//
-//            @Override
-//            public void AnimationUpdate(AAnimator animator) {
-//                mAnimationView.invalidate();
-//            }
-//        });
-//        mAnimator.setDuration(2000);
-//        mAnimator.setupAnimate(mAnimationView.getValuesHolderX(), 0, 400);
-//        mAnimator.setInterpolator(new QuadInterpolator(Type.IN));
-
         mButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
