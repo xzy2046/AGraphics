@@ -12,5 +12,5 @@
 	<string name="pre_key_linear_animation">linear_animation_key</string>
 	<string name="pre_title_linear_animation">Linear Animation</string>
 	<string name="pre_key_bitmap_animation">bitmap_animation_key</string>
-	<string name="pre_title_bitmap_animation">Bitmap Animation</string>
+	<string name="pre_title_bitmap_animation">Blur Effect</string>
 </resources>
