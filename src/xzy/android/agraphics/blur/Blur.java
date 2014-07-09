@@ -87,8 +87,6 @@ public class Blur {
 			BLUR_RADIUS_FAST = 1f;
 		}
 		
-		
-		
 		Log.i("xzy", "BITMAP_SCALE_FAST is : " + BITMAP_SCALE_FAST
 				+ "  BLUR_RADIUS_FAST is " + BLUR_RADIUS_FAST);
 		//use for test end

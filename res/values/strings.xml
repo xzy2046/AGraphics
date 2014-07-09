@@ -13,4 +13,10 @@
 	<string name="pre_title_linear_animation">Linear Animation</string>
 	<string name="pre_key_bitmap_animation">bitmap_animation_key</string>
 	<string name="pre_title_bitmap_animation">Blur Effect</string>
+	<!--  HighLight Pen -->
+	<string name="pre_key_highlight_pen">high_light_pen_key</string>
+	<string name="pre_title_highlight_pen">HighLight Pen</string>
+	<!-- menu -->
+	<string name="action_highlight_pen">HighLightPen</string>
+    <string name="action_pencil">Pencil</string>
 </resources>

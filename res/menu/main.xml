@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_highlight_pen"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_highlight_pen"/>
+    <item
+        android:id="@+id/action_pencil"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_pencil"/>
+
+    <group android:id="@+id/group" >
+        <item
+            android:id="@+id/group_item1"
+            android:onClick="onGroupItemClick"
+            android:title="TODO 1"/>
+        <item
+            android:id="@+id/group_item2"
+            android:onClick="onGroupItemClick"
+            android:title="TODO 2"/>
+    </group>
+
+</menu>

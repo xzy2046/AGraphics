@@ -21,5 +21,14 @@
                 android:targetClass="xzy.android.agraphics.activity.BlurActivity"
             />
 	  	</PreferenceScreen>
+	  	<PreferenceScreen
+	  	    android:key="@string/pre_key_highlight_pen"
+	  	    android:title="@string/pre_title_highlight_pen" >
+	  	    <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="xzy.android.agraphics"
+                android:targetClass="xzy.android.agraphics.activity.HighLightPenActivity"
+            />
+	  	</PreferenceScreen>
   	</PreferenceCategory>
 </PreferenceScreen>
