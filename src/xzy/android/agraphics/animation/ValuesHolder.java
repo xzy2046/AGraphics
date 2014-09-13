@@ -26,13 +26,22 @@ package xzy.android.agraphics.animation;
  */
 public class ValuesHolder {
 
-    private float value;
+    private static final float DEFAULT = 0f;
+
+    private float mValue = DEFAULT;
+
+    private float mLastValue = DEFAULT;
 
     public void setValue(float value) {
-        this.value = value;
+        mLastValue = mValue;
+        mValue = value;
     }
 
     public float getValue() {
-        return value;
+        return mValue;
+    }
+
+    public float getLastValue() {
+        return mLastValue;
     }
 }

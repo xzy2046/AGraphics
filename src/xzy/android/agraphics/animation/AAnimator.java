@@ -70,6 +70,8 @@ public class AAnimator {
 
     private AnimationUpdateListener mAnimationUpdateListener;
 
+    private AAnimator mSecondAnimator;
+
     public static enum REPEAT_MODE {
         RESTART, REVERSE
     }
@@ -87,8 +89,7 @@ public class AAnimator {
     }
 
     /**
-     *  TimeDelay 和 FrameDelay请勿同时使用
-     * @param timeDelay
+     * TimeDelay 和 FrameDelay请勿同时使用
      */
     public void setTimeDelay(long timeDelay) {
         if (timeDelay < 0) {
@@ -99,6 +100,7 @@ public class AAnimator {
 
     /**
      * TimeDelay 和FrameDelay 请勿同时使用
+     *
      * @param frameDelay 延迟的帧数
      */
     public void setFrameDelay(int frameDelay) {
@@ -138,7 +140,7 @@ public class AAnimator {
     }
 
     /**
-     * @param count   count must > 0
+     * @param count count must > 0
      */
     public void setRepeatCount(int count) {
         mRepeatCount = count;
@@ -188,13 +190,21 @@ public class AAnimator {
         mTempFrameDelay = mFrameDelay;
         mTempRepeatCount = mRepeatCount;
         onAnimationStart();
+        if (mSecondAnimator != null) {
+            mSecondAnimator.start();
+//            mSecondAnimator.onAnimationStart();
+        }
         applyTranformation();
 
     }
 
     //取消本次动画，mValues的值需要恢复吗？
+    //有多个动画时，取消一个一起取消
     public void cancel() {   //TODO  设置结束后的位置
         onAnimationCancel();
+        if (mSecondAnimator!= null) {
+            mSecondAnimator.cancel();
+        }
         mRunning = false;
     }
 
@@ -202,30 +212,59 @@ public class AAnimator {
         return mRunning;
     }
 
-	protected void onAnimationStart() {
-	    if (mAnimationListener != null) {
-	        mAnimationListener.onAnimationStart(this);
-	    }
-	}
+    protected void onAnimationStart() {
+        if (mAnimationListener != null) {
+            mAnimationListener.onAnimationStart(this);
+        }
+//        if (mSecondAnimator != null) {
+//            mSecondAnimator.onAnimationStart();
+//        }
+    }
 
-	protected void onAnimationEnd() {
-	    mRunning = false;
-	    if (mAnimationListener != null) {
-	        mAnimationListener.onAnimationEnd(this);
-	    }
-	}
+    protected void onAnimationEnd() {
+        mRunning = false;
+        if (mAnimationListener != null) {
+            mAnimationListener.onAnimationEnd(this);
+        }
+//        if (mSecondAnimator != null) {
+//            mSecondAnimator.onAnimationEnd();
+//        }
+    }
 
-	protected void onAnimationRepeat() {
-	    if (mAnimationListener != null) {
-	        mAnimationListener.onAnimationRepeat(this);
-	    }
-	}
+    protected void onAnimationRepeat() {
+        if (mAnimationListener != null) {
+            mAnimationListener.onAnimationRepeat(this);
+        }
+//        if (mSecondAnimator != null) {
+//            mSecondAnimator.onAnimationRepeat();
+//        }
+    }
 
-	protected void onAnimationCancel() {
-	    if (mAnimationListener != null) {
-	        mAnimationListener.onAnimationCancel(this);
-	    }
-	}
+    protected void onAnimationUpdated() {
+        if (mAnimationUpdateListener != null) {
+            mAnimationUpdateListener.onAnimationUpdate(this);
+        }
+//        if (mSecondAnimator != null) {
+//            mSecondAnimator.onAnimationUpdated();
+//        }
+    }
+
+    protected void onAnimationCancel() {
+        if (mAnimationListener != null) {
+            mAnimationListener.onAnimationCancel(this);
+        }
+//        if (mSecondAnimator != null) {
+//            mSecondAnimator.onAnimationCancel();
+//        }
+    }
+
+    /**
+     * play with another animator
+     * @param animator
+     */
+    public void playWith(AAnimator animator) {
+        mSecondAnimator = animator;
+    }
 
     // public Float3 animate(Float3 preVal, Float3 tarVal, float timeElapsed);
 
@@ -245,8 +284,9 @@ public class AAnimator {
 //            return;
         }
 
-        if (DEBUG)
+        if (DEBUG) {
             Log.i("xzy", "NormalizedTime is : " + getNormalizedTime());
+        }
         float normalizedTime = getNormalizedTime();
         if (normalizedTime < 0f) {
             normalizedTime = 0;
@@ -256,11 +296,12 @@ public class AAnimator {
             normalizedTime = 1;
         }
         float interpolation = mInterpolator.getInterpolation(normalizedTime);
-        if (DEBUG)
+        if (DEBUG) {
             Log.i("xzy", "interpolation is " + interpolation);
+        }
         float newValue = mStartValue + (mEndValue - mStartValue) * interpolation;
         mValuesHolder.setValue(newValue);
-        mAnimationUpdateListener.AnimationUpdate(this);
+        onAnimationUpdated();
         if (normalizedTime == 1f) {
             if (mTempRepeatCount == 0) {
                 if (mFillAfter) {
@@ -284,12 +325,19 @@ public class AAnimator {
                 }
             }
         }
+
+
+
         // applyTranformation();
         mHandler.postDelayed(new Runnable() {
 
             @Override
             public void run() {
                 applyTranformation();
+                //TODO test
+//                if (mSecondAnimator != null) {
+//                    mSecondAnimator.applyTranformation();
+//                }
             }
 
         }, 10);
@@ -316,17 +364,18 @@ public class AAnimator {
 
     public static interface AnimationListener {
 
-	    void onAnimationStart(AAnimator animator);
+        void onAnimationStart(AAnimator animator);
 
-	    void onAnimationEnd(AAnimator animator);
+        void onAnimationEnd(AAnimator animator);
 
-	    void onAnimationRepeat(AAnimator animator);
+        void onAnimationRepeat(AAnimator animator);
 
-	    void onAnimationCancel(AAnimator animator);
-	}
+        void onAnimationCancel(AAnimator animator);
+    }
 
-	public static interface AnimationUpdateListener {  //use for view to invalidate canvas
-	    void AnimationUpdate(AAnimator animator);
-	}
+    public static interface AnimationUpdateListener {  //use for view to invalidate canvas
+
+        void onAnimationUpdate(AAnimator animator);
+    }
 
 }
