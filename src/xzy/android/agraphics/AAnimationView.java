@@ -191,7 +191,7 @@ public class AAnimationView extends View implements AAnimator.AnimationUpdateLis
     }
 
     @Override
-    public void AnimationUpdate(AAnimator animator) {
+    public void onAnimationUpdate(AAnimator animator) {
         if (mPathInUse == null) {
             mPathInUse = new Path();
         } else {
